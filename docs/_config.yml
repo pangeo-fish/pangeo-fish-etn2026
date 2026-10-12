@@ -8,7 +8,7 @@
 title: Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop # The title of the book. Will be placed in the left navbar.
 author: Pangeo-Fish # The author of the book
 copyright: "2026" # Copyright year to be placed in the footer
-logo: "./images/pangeo-logo.png" # A path to the book logo
+logo: "./images/pangeo-fish-logo.png" # A path to the book logo
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.

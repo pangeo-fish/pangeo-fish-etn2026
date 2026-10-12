@@ -26,7 +26,7 @@ tags:
   - biologging
   - fish-tracking
   - HEALPix
-thumbnail: images/pangeo-logo.png
+thumbnail: images/pangeo-fish-logo.png
 ---
 
 # Fish geolocation with Pangeo-Fish
