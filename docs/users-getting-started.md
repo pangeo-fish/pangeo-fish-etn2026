@@ -27,10 +27,10 @@ You can also contribute to "the Pangeo show and tell" online meetups.
 Once your enrollment has been approved, click on the link below. It will:
 
 1. ask you to **Sign in with EGI Check-in** (use the same ORCID iD / EGI account as above),
-2. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/pangeo-fish/pangeo-fish-notebook:latest`),
+2. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/pangeo-fish/pangeo-fish-notebook:2026.06.04-aae6eb8`),
 3. **clone this repository** (`pangeo-fish-etn2026`) into your home directory (or update it if it is already there) and open the pangeo-fish notebook.
 
-👉 **[Start the ETN 2026 pangeo-fish workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Fpangeo-fish%2Fpangeo-fish-notebook%3Alatest&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)** 👈
+👉 **[Start the ETN 2026 pangeo-fish workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Fpangeo-fish%2Fpangeo-fish-notebook%3A2026.06.04-aae6eb8&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)** 👈
 
 :::{note}
 If a JupyterLab server is **already running** for you (for example with another image), the link above opens that server instead of starting a new one with the pangeo-fish image. In that case, stop it first: in JupyterLab, go to `File > Hub Control Panel`, click `Stop My Server`, then click the link again.
@@ -45,10 +45,10 @@ You can also access Pangeo@EOSC via [https://pangeo-eosc.vm.fedcloud.eu/](https:
 In the server options, under **Image**, choose **"Specify an existing docker image"** (custom image) and enter:
 
 ```
-ghcr.io/pangeo-fish/pangeo-fish-notebook:latest
+ghcr.io/pangeo-fish/pangeo-fish-notebook:2026.06.04-aae6eb8
 ```
 
-This image is [`pangeo/pangeo-notebook`](https://github.com/pangeo-data/pangeo-docker-images) (the image maintained by the Pangeo community, containing all the Python packages you need for data analysis and visualization) plus a dedicated conda environment with [pangeo-fish](https://github.com/pangeo-fish/pangeo-fish) installed. It is built by [pangeo-fish/pangeo-fish-docker](https://github.com/pangeo-fish/pangeo-fish-docker).
+The tag `2026.06.04-aae6eb8` is the image built for this workshop (pangeo-notebook `2026.06.04` + pangeo-fish commit `aae6eb8`, branch `clement-eosc-image`); please use this fixed tag rather than `latest` so that everybody runs the same environment. This image is [`pangeo/pangeo-notebook`](https://github.com/pangeo-data/pangeo-docker-images) (the image maintained by the Pangeo community, containing all the Python packages you need for data analysis and visualization) plus a dedicated conda environment with [pangeo-fish](https://github.com/pangeo-fish/pangeo-fish) installed. It is built by [pangeo-fish/pangeo-fish-docker](https://github.com/pangeo-fish/pangeo-fish-docker).
 
 Once JupyterLab is started, open a terminal and clone this repository:
 

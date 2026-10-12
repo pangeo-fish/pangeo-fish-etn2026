@@ -9,7 +9,7 @@ This hands-on workshop is given at the [European Tracking Network (ETN) Symposiu
 The notebooks run on [Pangeo@EOSC](https://pangeo-data.github.io/pangeo-eosc/) with the Docker image [`ghcr.io/pangeo-fish/pangeo-fish-notebook`](https://github.com/pangeo-fish/pangeo-fish-docker).
 
 👉 **One-click start on Pangeo@EOSC** (login, start the pangeo-fish image, clone/update this repository and open the notebook):
-[Start the workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Fpangeo-fish%2Fpangeo-fish-notebook%3Alatest&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)
+[Start the workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Fpangeo-fish%2Fpangeo-fish-notebook%3A2026.06.04-aae6eb8&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)
 
 See [Registration to Pangeo@EOSC](https://pangeo-fish.github.io/pangeo-fish-etn2026/users-getting-started.html) for the registration steps (to be done **before** the workshop).
 
