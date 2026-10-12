@@ -1,0 +1,27 @@
+format: jb-book
+root: intro
+parts:
+  - caption: About
+    chapters:
+      - file: agenda
+      - file: users-getting-started
+  - caption: Pangeo and EOSC in a nutshell
+    chapters:
+      - file: pangeo
+  - caption: Python for EO
+    chapters:
+      - file: pangeo-intro
+  - caption: Introduction to HEALPix and Dask
+    chapters:
+      - file: SST_AI
+  - caption: Fish geolocation with pangeo-fish
+    chapters:
+      - file: pangeo-fish
+  - caption: Beyond the tutorial
+    chapters:
+      - file: afterword/resources
+        title: Resources
+      - file: afterword/pythia
+        title: Project Pythia
+      - file: afterword/edsbook
+        title: Environmental Data Science Book

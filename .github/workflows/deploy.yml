@@ -1,0 +1,45 @@
+name: deploy
+
+on:
+  # Trigger the workflow on push to main branch and tutorial path
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
+      - .binder/environment.yml
+      - .github/workflows/deploy.yml
+  workflow_dispatch:
+
+# This job installs dependencies, builds the jupyter book, and pushes it to the `gh-pages` branch
+jobs:
+  build:
+    name: Setup
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up conda and dependencies
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: .binder/environment.yml
+          environment-name: etn2026
+          condarc: |
+            channels:
+              - conda-forge
+      # Build the book
+      - name: Build the jupyter book
+        run: |
+          jupyter-book build docs
+      # Deploy the book's HTML to gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
+          force_orphan: true

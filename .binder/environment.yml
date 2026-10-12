@@ -1,0 +1,33 @@
+# Environment used to build the Jupyter Book (GitHub Actions) and by Binder.
+# The workshop itself runs on Pangeo@EOSC with the Docker image
+# ghcr.io/pangeo-fish/pangeo-fish-notebook (see docs/users-getting-started.md).
+name: etn2026
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyter-book>=1,<2
+  - ghp-import
+  - matplotlib
+  - numpy
+  - xarray
+  - cftime
+  - netcdf4
+  - h5netcdf
+  - zarr
+  - cartopy
+  - holoviews
+  - hvplot
+  - geoviews
+  - geopandas
+  - pooch
+  - fsspec
+  - s3fs
+  - git
+  - jupyterlab-git
+  - jupyterlab-myst>=2.0.0
+  - nbgitpuller
+  - pip
+  - pip:
+      - sphinx-exercise
+      - jupytext
