@@ -8,12 +8,10 @@ parts:
   - caption: Pangeo and EOSC in a nutshell
     chapters:
       - file: pangeo
-  - caption: Python for EO
+  - caption: Ocean model data in Python
     chapters:
-      - file: pangeo-intro
-  - caption: Introduction to HEALPix and Dask
-    chapters:
-      - file: SST_AI
+      - file: glorys-xarray-dask-zarr-healpix
+        title: Xarray, Dask, Zarr and HEALPix with GLORYS
   - caption: Fish geolocation with pangeo-fish
     chapters:
       - file: pangeo-fish

@@ -55,15 +55,15 @@ All the training material is developed collaboratively and made available online
 
 By the end of this workshop, learners will be able to:
 - Understand the Pangeo ecosystem and its role in scalable analysis of oceanographic and biologging data.
-- Open, explore and visualise multidimensional datasets with Xarray, and scale the computation with Dask.
-- Understand what HEALPix is and why pangeo-fish uses it.
+- Open, explore and visualise an ocean model (GLORYS, from the Copernicus Marine Service) with Xarray, scale the computation with Dask and save results as Zarr.
+- Understand what HEALPix is (an equal-area Discrete Global Grid System), why pangeo-fish uses it, and how to convert and plot data on it with xdggs.
 - Run the pangeo-fish geolocation workflow on a biologging tag: compare the tag with a reference model, build emission probabilities, add acoustic detections, optimise and visualise the estimated trajectory.
 
 ## Prerequisites
 
 Before starting this workshop, learners should have:
 
-- Basic knowledge of Python or another programming language;
+- Basic knowledge of R or another programming language (no Python experience is required: the notebooks are written for R users);
 - Basic knowledge of biologging / fish tracking data (data storage tags, acoustic telemetry);
 - A [Copernicus Marine Service](https://data.marine.copernicus.eu/register) account (free), used by the pangeo-fish notebook to download the reference ocean model.
 

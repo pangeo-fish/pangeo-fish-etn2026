@@ -60,16 +60,19 @@ or use the one-click link of the previous section.
 
 ## Which kernel to use
 
-The Docker image provides two Python kernels:
-
-- **Python 3 (ipykernel)**: the standard Pangeo notebook environment. Use it for the *Python for EO* and *Introduction to HEALPix and Dask* notebooks.
-- **Python (pangeo-fish)**: the environment with pangeo-fish installed. Use it for the *Fish geolocation with pangeo-fish* notebook (it is selected automatically when you open that notebook).
+The Docker image provides two Python kernels. **Use "Python (pangeo-fish)" for all the notebooks of this workshop** (it is selected automatically when you open them from this repository). The other kernel, "Python 3 (ipykernel)", is the standard Pangeo notebook environment without pangeo-fish.
 
 In a terminal, the pangeo-fish environment is activated with `conda activate pangeo-fish`.
 
 ## Copernicus Marine credentials
 
-The pangeo-fish notebook downloads the reference ocean model (Global Ocean Physics Reanalysis) from the [Copernicus Marine Service](https://data.marine.copernicus.eu/). You need a (free) Copernicus Marine account: [register here](https://data.marine.copernicus.eu/register) before the workshop. The notebook asks for your username and password the first time and stores them in a local file in your home directory.
+Both notebooks download ocean model data (GLORYS, Global Ocean Physics Reanalysis) from the [Copernicus Marine Service](https://data.marine.copernicus.eu/). You need a (free) Copernicus Marine account:
+
+1. Go to [https://data.marine.copernicus.eu/register](https://data.marine.copernicus.eu/register) and create an account (an email address is enough; confirm it by clicking on the link you receive).
+2. Remember your **username** (often your email address) and **password**.
+3. The first notebook asks for them once (`copernicusmarine.login()`) and stores them in `~/.copernicusmarine/.copernicusmarine-credentials` in your home directory on Pangeo@EOSC, which is persistent. You will not be asked again.
+
+Please create the account **before the workshop**: the confirmation email can take a few minutes to arrive.
 
 ## Resources
 

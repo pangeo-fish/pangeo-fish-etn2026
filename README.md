@@ -25,4 +25,4 @@ The HTML is generated in `docs/_build/html`. The book is deployed automatically 
 
 ## Acknowledgements
 
-This repository is derived from [pangeo-data/pangeo-bids25](https://github.com/pangeo-data/pangeo-bids25) (Pangeo tutorial at BiDS 2025). The *Python for EO* and *Introduction to HEALPix and Dask* notebooks come from that tutorial. The pangeo-fish notebook comes from [pangeo-fish/pangeo-fish](https://github.com/pangeo-fish/pangeo-fish/blob/main/notebooks/pangeo-fish.ipynb).
+This repository is derived from [pangeo-data/pangeo-bids25](https://github.com/pangeo-data/pangeo-bids25) (Pangeo tutorial at BiDS 2025). The GLORYS notebook (Xarray, Dask, Zarr, HEALPix) is adapted from its *Introduction to HEALPix and Dask* notebook. The pangeo-fish notebook comes from [pangeo-fish/pangeo-fish](https://github.com/pangeo-fish/pangeo-fish/blob/main/notebooks/pangeo-fish.ipynb).
