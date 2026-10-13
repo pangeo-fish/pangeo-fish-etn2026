@@ -39,7 +39,7 @@ Biologging tags (data storage tags, pop-up satellite tags) and acoustic telemetr
 
 # Time, location and registration
 
-The workshop takes place on **Thursday 15 October 2026, 15:00 - 17:00 CET**, as one of the concurrent workshops of the [ETN Symposium 2026](https://europeantrackingnetwork.org/) (see the [symposium schedule](https://europeantrackingnetwork.org/sites/europeantrackingnetwork.org/files/managed/ETN%20Symposium/etn_symposium_2026_schedule_0.pdf)).
+The workshop takes place on **Thursday 15 October 2026, 15:00 - 16:00 CET**, as one of the concurrent workshops of the [ETN Symposium 2026](https://europeantrackingnetwork.org/) (see the [symposium schedule](https://europeantrackingnetwork.org/sites/europeantrackingnetwork.org/files/managed/ETN%20Symposium/etn_symposium_2026_schedule_0.pdf)).
 
 Venue: **B!NGS Copenhagen**, Vesterbrogade 149, 1620 København, Denmark.
 

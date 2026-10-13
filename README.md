@@ -4,7 +4,7 @@ The content of this repository (folder `docs`) is rendered as an online document
 
 ## Workshop: Fish geolocation with Pangeo-Fish
 
-This hands-on workshop is given at the [European Tracking Network (ETN) Symposium 2026](https://europeantrackingnetwork.org/) (Thursday 15 October 2026, 15:00 - 17:00 CET, B!NGS Copenhagen). It introduces the [Pangeo](https://pangeo.io) ecosystem (Xarray, Dask, HEALPix) and walks participants through a complete [pangeo-fish](https://github.com/pangeo-fish/pangeo-fish) geolocation workflow on biologging data.
+This hands-on workshop is given at the [European Tracking Network (ETN) Symposium 2026](https://europeantrackingnetwork.org/) (Thursday 15 October 2026, 15:00 - 16:00 CET, B!NGS Copenhagen). It introduces the [Pangeo](https://pangeo.io) ecosystem (Xarray, Dask, HEALPix) and walks participants through a complete [pangeo-fish](https://github.com/pangeo-fish/pangeo-fish) geolocation workflow on biologging data.
 
 The notebooks run on [Pangeo@EOSC](https://pangeo-data.github.io/pangeo-eosc/) with the Docker image [`ghcr.io/pangeo-fish/pangeo-fish-notebook`](https://github.com/pangeo-fish/pangeo-fish-docker).
 
