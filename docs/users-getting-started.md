@@ -9,7 +9,13 @@ In this section you will learn how to register and access pangeo@eosc services, 
 You need to create an [EGI Check-in account](https://www.egi.eu/service/check-in/) and enroll to the `vo.pangeo.eu` Virtual Organisation. There are several steps to follow:
 
 1. **Sign up** for an EGI Check-in account following [these steps](https://docs.egi.eu/users/aai/check-in/signup/). **Using [ORCID iD](https://orcid.org/) to authenticate is recommended.**
-2. **Enroll** in the `vo.pangeo.eu` Virtual Organisation (VO) by clicking on [the enrollment URL](https://aai.egi.eu/registry/co_petitions/start/coef:386) using the EGI Check-in account created in the previous step. Review and click on `Submit`. Please add a note in the statement of purpose (make sure you use the text given by your instructors, e.g. *"ETN Symposium 2026 pangeo-fish workshop"*) when requesting to join the VO explaining why you want to access `pangeo-eosc`.
+2. **Enroll** in the `vo.pangeo.eu` Virtual Organisation (VO) by clicking on [the enrollment URL](https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.pangeo.eu) using the EGI Check-in account created in the previous step. In the **"reason to join"** field, please write exactly:
+
+   ```text
+   Attend the pangeo-fish workshop at the ETN Symposium 2026 in Copenhagen
+   ```
+
+   Using this exact text lets us identify workshop participants and approve the requests as soon as possible. Review and click on `Submit`.
 
 :::{warning}
 The approval of your enrollment to the VO is done **manually**. Please register **as early as possible before the workshop** (ideally a few days before), otherwise you may not be able to log in during the session.
