@@ -54,7 +54,7 @@ In the server options, under **Image**, choose **"Specify an existing docker ima
 ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-e5777cc
 ```
 
-The tag `2026.06.04-aae6eb8` is the image built for this workshop (pangeo-notebook `2026.06.04` + pangeo-fish commit `aae6eb8`, branch `clement-eosc-image`); please use this fixed tag rather than `latest` so that everybody runs the same environment. This image is [`pangeo/pangeo-notebook`](https://github.com/pangeo-data/pangeo-docker-images) (the image maintained by the Pangeo community, containing all the Python packages you need for data analysis and visualization) plus a dedicated conda environment with [pangeo-fish](https://github.com/pangeo-fish/pangeo-fish) installed. It is built by [pangeo-fish/pangeo-fish-docker](https://github.com/pangeo-fish/pangeo-fish-docker).
+The fixed tag `2026.06.04-e5777cc` uses `pangeo/pangeo-notebook:2026.06.04` plus Pangeo-Fish commit `e5777cc` from the [tinaok fork](https://github.com/tinaok/pangeo-fish). It is based on the workshop's `clement-eosc-image` commit `aae6eb8` and includes the [coastal HEALPix fallback fix](https://github.com/tinaok/pangeo-fish/pull/2). Use this fixed tag rather than `latest` so that everybody runs the same environment. The image is built and tested by [tinaok/pangeo-fish-docker](https://github.com/tinaok/pangeo-fish-docker).
 
 Once JupyterLab is started, open a terminal and clone this repository:
 
