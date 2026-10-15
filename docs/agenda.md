@@ -10,7 +10,7 @@ The participants are mostly R users with little or no Python experience. With on
 | 15:05  | Accessing Pangeo@EOSC: log in, start the pangeo-fish environment with the one-click link, check your Copernicus Marine account. Pangeo in a nutshell while the servers start (10 minutes) |
 | 15:15  | Hands-on 1: ocean model data in Python. Open GLORYS with Xarray, select and plot a piece of it, convert it to HEALPix and plot with xdggs (15 minutes) |
 | 15:30  | Hands-on 2: fish geolocation with pangeo-fish, from the tag data to the estimated trajectory (20 minutes) |
-| 15:50  | Q&A, feedback and next steps (10 minutes) |
+| 15:50  | Q&A, next steps and the [feedback survey](feedback) (10 minutes) |
 | 16:00  | End of the workshop |
 
 Before the workshop (see [Registration to Pangeo@EOSC](users-getting-started)):
