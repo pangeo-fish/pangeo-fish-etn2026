@@ -58,6 +58,13 @@ Open the running sessions panel using the circle-with-a-square icon on the left.
 
 Then close all tabs with `File > Close All Tabs`.
 
+:::{figure} images/jupyterlab-close-all-tabs.png
+:alt: JupyterLab File menu with Close All Tabs highlighted.
+:width: 600px
+
+After shutting down the kernels and terminals, choose **File > Close All Tabs**.
+:::
+
 ## Stop your server when you are done
 
 Your JupyterLab server keeps using CPU, memory and electricity on the shared
@@ -107,12 +114,14 @@ move the entire folder to the trash.
 This server refuses to delete a non-empty folder. The path in your error will differ.
 :::
 
-If you get this error, there are two options:
+If you get this error, there are two options. For folders with nested subfolders
+(such as Zarr stores) or hidden files (names starting with `.`), using the terminal
+is usually quicker than emptying each folder in the file browser.
 
 - **File browser**: open the folder, select all files (`Shift + click` the first and
   last), right-click > `Delete`, go back up and delete the now empty folder.
-  Hidden files (names starting with `.`) are not shown by default and can still
-  block deletion; use the terminal in that case.
+  If there are subfolders, empty and delete them first. Hidden files are not shown
+  by default and can still block deletion.
 - **Terminal** (`File > New > Terminal`):
 
   ```bash

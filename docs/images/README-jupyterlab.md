@@ -18,6 +18,7 @@ They contain no production account or research data.
 | `jupyterlab-run-menu.png` | Open a notebook, select a code cell below the first cell, then open **Run**. |
 | `jupyterlab-kernel-menu.png` | With the notebook kernel running, open **Kernel**. |
 | `jupyterlab-running-panel.png` | Start a notebook kernel and a terminal; open **Running Terminals and Kernels**. Widen the sidebar and collapse unrelated sections so both **Shut Down All** buttons are legible. |
+| `jupyterlab-close-all-tabs.png` | Open **File** and hover over **Close All Tabs**. |
 | `jupyterlab-hub-control-panel.png` | In a JupyterHub-managed Lab session, open **File**. |
 | `jupyterhub-stop-server.png` | Choose **File > Hub Control Panel** while the user's server is running. |
 | `jupyterlab-delete-folder.png` | In the file browser, right-click the disposable non-empty folder. |
