@@ -54,7 +54,7 @@ In the server options, under **Image**, choose **"Specify an existing docker ima
 ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5
 ```
 
-The fixed tag `2026.06.04-10751a5` uses `pangeo/pangeo-notebook:2026.06.04` plus Pangeo-Fish commit `10751a5` from the [tinaok fork](https://github.com/tinaok/pangeo-fish). It extends the workshop's `clement-eosc-image` commit `aae6eb8` with the [coastal HEALPix fallback fix](https://github.com/tinaok/pangeo-fish/pull/2), [IBI reanalysis split-dataset loading](https://github.com/tinaok/pangeo-fish/pull/3), and the [derived Earth radius and Zarr DGGS attributes](https://github.com/tinaok/pangeo-fish/tree/fix/derive-earth-radius-dggs-attrs) (`optimize_pdf` and the HEALPix maps read the grid level and ellipsoid from the data, and every HEALPix dataset returned by the helpers, including the acoustic likelihood, and every saved Zarr store carry the DGGS grid attributes). Use this fixed tag so that everybody runs the same environment. The image is built and tested by [tinaok/pangeo-fish-docker](https://github.com/tinaok/pangeo-fish-docker).
+The fixed tag `2026.06.04-10751a5` contains the Pangeo-Fish version prepared for this workshop. Use this fixed tag so that everybody runs the same environment. The image is built and tested by [tinaok/pangeo-fish-docker](https://github.com/tinaok/pangeo-fish-docker).
 
 Once JupyterLab is started, open a terminal and clone this repository:
 
