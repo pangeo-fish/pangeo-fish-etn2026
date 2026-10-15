@@ -6,7 +6,6 @@ parts:
       - file: agenda
       - file: users-getting-started
       - file: jupyterlab-basics
-      - file: feedback
   - caption: Pangeo and EOSC in a nutshell
     chapters:
       - file: pangeo
@@ -14,9 +13,11 @@ parts:
     chapters:
       - file: glorys-xarray-dask-zarr-healpix
         title: Xarray, Dask, Zarr and HEALPix with GLORYS
-  - caption: Fish geolocation with pangeo-fish
+  - caption: Fish geolocation with pangeo-fish and GFTS
     chapters:
       - file: pangeo-fish
+      - file: gfts
+      - file: feedback
   - caption: Beyond the tutorial
     chapters:
       - file: afterword/resources
