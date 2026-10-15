@@ -33,10 +33,10 @@ You can also contribute to "the Pangeo show and tell" online meetups.
 Once your enrollment has been approved, click on the link below. It will:
 
 1. ask you to **Sign in with EGI Check-in** (use the same ORCID iD / EGI account as above),
-2. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-3c50042`),
+2. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-99b6bbb`),
 3. **clone this repository** (`pangeo-fish-etn2026`) into your home directory (or update it if it is already there) and open the pangeo-fish notebook.
 
-👉 **<a href="https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-3c50042&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain">Start the ETN 2026 pangeo-fish workshop environment</a>** 👈
+👉 **<a href="https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-99b6bbb&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain">Start the ETN 2026 pangeo-fish workshop environment</a>** 👈
 
 :::{note}
 If a JupyterLab server is **already running** for you (for example with another image), the link above opens that server instead of starting a new one with the pangeo-fish image. In that case, stop it first: in JupyterLab, go to `File > Hub Control Panel`, click `Stop My Server`, then click the link again.
@@ -51,10 +51,10 @@ You can also access Pangeo@EOSC via [https://pangeo-eosc.vm.fedcloud.eu/](https:
 In the server options, under **Image**, choose **"Specify an existing docker image"** (custom image) and enter:
 
 ```
-ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-3c50042
+ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-99b6bbb
 ```
 
-The fixed tag `2026.06.04-3c50042` uses `pangeo/pangeo-notebook:2026.06.04` plus Pangeo-Fish commit `3c50042` from the [tinaok fork](https://github.com/tinaok/pangeo-fish). It extends the workshop's `clement-eosc-image` commit `aae6eb8` with the [coastal HEALPix fallback fix](https://github.com/tinaok/pangeo-fish/pull/2) and [IBI reanalysis split-dataset loading](https://github.com/tinaok/pangeo-fish/pull/3). Use this fixed tag so that everybody runs the same environment. The image is built and tested by [tinaok/pangeo-fish-docker](https://github.com/tinaok/pangeo-fish-docker).
+The fixed tag `2026.06.04-99b6bbb` uses `pangeo/pangeo-notebook:2026.06.04` plus Pangeo-Fish commit `99b6bbb` from the [tinaok fork](https://github.com/tinaok/pangeo-fish). It extends the workshop's `clement-eosc-image` commit `aae6eb8` with the [coastal HEALPix fallback fix](https://github.com/tinaok/pangeo-fish/pull/2), [IBI reanalysis split-dataset loading](https://github.com/tinaok/pangeo-fish/pull/3), and the [derived Earth radius and Zarr DGGS attributes](https://github.com/tinaok/pangeo-fish/tree/fix/derive-earth-radius-dggs-attrs) (`optimize_pdf` and the HEALPix maps read the grid level and ellipsoid from the data, and saved Zarr stores carry the DGGS grid attributes). Use this fixed tag so that everybody runs the same environment. The image is built and tested by [tinaok/pangeo-fish-docker](https://github.com/tinaok/pangeo-fish-docker).
 
 Once JupyterLab is started, open a terminal and clone this repository:
 
