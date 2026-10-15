@@ -11,6 +11,12 @@ The notebooks run on [Pangeo@EOSC](https://pangeo-data.github.io/pangeo-eosc/) w
 👉 **One-click start on Pangeo@EOSC** (login, start the pangeo-fish image, clone/update this repository and open the notebook):
 [Start the workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)
 
+or copy and paste this URL into your browser's address bar:
+
+```
+https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain
+```
+
 See [Registration to Pangeo@EOSC](https://pangeo-fish.github.io/pangeo-fish-etn2026/users-getting-started.html) for the registration steps (to be done **before** the workshop).
 
 ## Build the book locally
