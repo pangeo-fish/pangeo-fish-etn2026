@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Registration to Pangeo@EOSC &#8212; Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'users-getting-started';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Practical tips for JupyterLab" href="jupyterlab-basics.html" />
+    <link rel="prev" title="Timeline of the workshop" href="agenda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pangeo-fish-logo.png" class="logo__image only-light" alt="Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop - Home"/>
+    <img src="_static/pangeo-fish-logo.png" class="logo__image only-dark pst-js-only" alt="Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fish geolocation with Pangeo-Fish
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="agenda.html">Timeline of the workshop</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Registration to Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyterlab-basics.html">Practical tips for JupyterLab</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pangeo and EOSC in a nutshell</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pangeo.html">EOSC and the Pangeo community</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ocean model data in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glorys-xarray-dask-zarr-healpix.html">Xarray, Dask, Zarr and HEALPix with GLORYS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fish geolocation with pangeo-fish and GFTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pangeo-fish.html">Estimating fish locations with Pangeo-Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfts.html">Your fish in a future ocean with GFTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feedback.html">Feedback survey</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="afterword/resources.html">Join the community!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="afterword/edsbook.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-fish/pangeo-fish-etn2026" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-fish/pangeo-fish-etn2026/issues/new?title=Issue%20on%20page%20%2Fusers-getting-started.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/users-getting-started.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Registration to Pangeo@EOSC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-the-workshop-environment-one-click">Start the workshop environment (one click)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-to-pangeo-eosc-manually">Access to Pangeo@EOSC manually</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-kernel-to-use">Which kernel to use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copernicus-marine-credentials">Copernicus Marine credentials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-minio">Access MinIO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="registration-to-pangeo-eosc">
+<h1>Registration to Pangeo&#64;EOSC<a class="headerlink" href="#registration-to-pangeo-eosc" title="Link to this heading">#</a></h1>
+<p>As explained in the previous section, Pangeo&#64;EOSC is the main public deployment of the Pangeo ecosystem open to European researchers and their collaborators.
+The deployment is hosted on European infrastructure and is meant to remain public and freely accessible to all European researchers. Pangeo&#64;Europe mostly uses Pangeo&#64;EOSC for training researchers.</p>
+<p>In this section you will learn how to register and access pangeo&#64;eosc services, and how to start the workshop environment with a single click.</p>
+<p>You need to create an <a class="reference external" href="https://www.egi.eu/service/check-in/">EGI Check-in account</a> and enroll to the <code class="docutils literal notranslate"><span class="pre">vo.pangeo.eu</span></code> Virtual Organisation. There are several steps to follow:</p>
+<ol class="arabic">
+<li><p><strong>Sign up</strong> for an EGI Check-in account following <a class="reference external" href="https://docs.egi.eu/users/aai/check-in/signup/">these steps</a>. <strong>Using <a class="reference external" href="https://orcid.org/">ORCID iD</a> to authenticate is recommended.</strong></p></li>
+<li><p><strong>Enroll</strong> in the <code class="docutils literal notranslate"><span class="pre">vo.pangeo.eu</span></code> Virtual Organisation (VO) by clicking on <a class="reference external" href="https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.pangeo.eu">the enrollment URL</a> using the EGI Check-in account created in the previous step. In the <strong>“reason to join”</strong> field, please write exactly:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Attend the pangeo-fish workshop at the ETN Symposium 2026 in Copenhagen
+</pre></div>
+</div>
+<p>Using this exact text lets us identify workshop participants and approve the requests as soon as possible. Review and click on <code class="docutils literal notranslate"><span class="pre">Submit</span></code>.</p>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The approval of your enrollment to the VO is done <strong>manually</strong>. Please register <strong>as early as possible before the workshop</strong> (ideally a few days before), otherwise you may not be able to log in during the session.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After the <strong>ETN Symposium 2026 pangeo-fish workshop</strong>, you can continue to use the resources.
+We would appreciate you get in touch with us to give us some feedback and be informed of the platform evolution. You can do this through <a class="reference external" href="https://github.com/pangeo-data/pangeo-eosc/discussions">Github Discussions</a>.</p>
+<p>You can also contribute to “the Pangeo show and tell” online meetups.</p>
+</div>
+<section id="start-the-workshop-environment-one-click">
+<h2>Start the workshop environment (one click)<a class="headerlink" href="#start-the-workshop-environment-one-click" title="Link to this heading">#</a></h2>
+<p>Once your enrollment has been approved, first <a class="reference external" href="https://pangeo-eosc.vm.fedcloud.eu/hub/login">log in to Pangeo&#64;EOSC</a>. Click <strong>Sign in with EGI Check-in</strong> and use the same ORCID iD / EGI account you used to register. After logging in, return to this page and use the launch link below. The launch link may not work correctly if you are not already logged in.</p>
+<p>The launch link will:</p>
+<ol class="arabic simple">
+<li><p>start a JupyterLab server with the <strong>pangeo-fish Docker image</strong> (<code class="docutils literal notranslate"><span class="pre">ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5</span></code>),</p></li>
+<li><p><strong>clone this repository</strong> (<code class="docutils literal notranslate"><span class="pre">pangeo-fish-etn2026</span></code>) into your home directory (or update it if it is already there) and open the pangeo-fish notebook.</p></li>
+</ol>
+<p>👉 <strong><a href="https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain">Start the ETN 2026 pangeo-fish workshop environment</a></strong> 👈</p>
+<p>Alternatively, after logging in, copy and paste this URL into your browser’s address bar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a JupyterLab server is <strong>already running</strong> for you (for example with another image), the link above opens that server instead of starting a new one with the pangeo-fish image. In that case, stop it first: in JupyterLab, go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Hub</span> <span class="pre">Control</span> <span class="pre">Panel</span></code>, click <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">My</span> <span class="pre">Server</span></code>, then click the link again.</p>
+</div>
+<p>The 🚀 (rocket) button at the top of every notebook page of this book does the same thing (clone/update the repository and open that notebook) with the <code class="docutils literal notranslate"><span class="pre">JupyterHub</span></code> entry, but it does <strong>not</strong> select the Docker image for you.</p>
+</section>
+<section id="access-to-pangeo-eosc-manually">
+<h2>Access to Pangeo&#64;EOSC manually<a class="headerlink" href="#access-to-pangeo-eosc-manually" title="Link to this heading">#</a></h2>
+<p>You can also access Pangeo&#64;EOSC via <a class="reference external" href="https://pangeo-eosc.vm.fedcloud.eu/">https://pangeo-eosc.vm.fedcloud.eu/</a>. Click on <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">in</span> <span class="pre">with</span> <span class="pre">EGI</span> <span class="pre">Check-in</span></code> and then use your ORCID iD credentials.</p>
+<p>In the server options, under <strong>Image</strong>, choose <strong>“Specify an existing docker image”</strong> (custom image) and enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">tinaok</span><span class="o">/</span><span class="n">pangeo</span><span class="o">-</span><span class="n">fish</span><span class="o">-</span><span class="n">notebook</span><span class="p">:</span><span class="mf">2026.06.04</span><span class="o">-</span><span class="mi">10751</span><span class="n">a5</span>
+</pre></div>
+</div>
+<p>The fixed tag <code class="docutils literal notranslate"><span class="pre">2026.06.04-10751a5</span></code> contains the Pangeo-Fish version prepared for this workshop. Use this fixed tag so that everybody runs the same environment. The image is built and tested by <a class="reference external" href="https://github.com/tinaok/pangeo-fish-docker">tinaok/pangeo-fish-docker</a>.</p>
+<p>Once JupyterLab is started, open a terminal and clone this repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pangeo</span><span class="o">-</span><span class="n">fish</span><span class="o">/</span><span class="n">pangeo</span><span class="o">-</span><span class="n">fish</span><span class="o">-</span><span class="n">etn2026</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>or use the one-click link of the previous section.</p>
+</section>
+<section id="which-kernel-to-use">
+<h2>Which kernel to use<a class="headerlink" href="#which-kernel-to-use" title="Link to this heading">#</a></h2>
+<p>The Docker image provides two Python kernels. <strong>Use “Python (pangeo-fish)” for all the notebooks of this workshop</strong> (it is selected automatically when you open them from this repository). The other kernel, “Python 3 (ipykernel)”, is the standard Pangeo notebook environment without pangeo-fish.</p>
+<p>In a terminal, the pangeo-fish environment is activated with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">pangeo-fish</span></code>.</p>
+<p>A few practical JupyterLab tips (running all cells, shutting down kernels, stopping your server, deleting folders) are gathered in <a class="reference internal" href="jupyterlab-basics.html"><span class="doc">Practical tips for JupyterLab</span></a>.</p>
+</section>
+<section id="copernicus-marine-credentials">
+<h2>Copernicus Marine credentials<a class="headerlink" href="#copernicus-marine-credentials" title="Link to this heading">#</a></h2>
+<p>Both notebooks download ocean model data (GLORYS, Global Ocean Physics Reanalysis) from the <a class="reference external" href="https://data.marine.copernicus.eu/">Copernicus Marine Service</a>. You need a (free) Copernicus Marine account:</p>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://data.marine.copernicus.eu/register">https://data.marine.copernicus.eu/register</a> and create an account (an email address is enough; confirm it by clicking on the link you receive).</p></li>
+<li><p>Remember your <strong>username</strong> (often your email address) and <strong>password</strong>.</p></li>
+<li><p>The first notebook asks for them once (<code class="docutils literal notranslate"><span class="pre">copernicusmarine.login()</span></code>) and stores them in <code class="docutils literal notranslate"><span class="pre">~/.copernicusmarine/.copernicusmarine-credentials</span></code> in your home directory on Pangeo&#64;EOSC, which is persistent. You will not be asked again.</p></li>
+</ol>
+<p>Please create the account <strong>before the workshop</strong>: the confirmation email can take a few minutes to arrive.</p>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<p>Currently (September 2023) Pangeo&#64;EOSC is configured to host 20 simultaneous users with Jupyter (8 CPUs, 32GB RAM) and a Dask cluster (max: 4 workers, each worker with 8 CPUs and 32 GB RAM). This is subject to change depending on usage and resource availability at CESNET.</p>
+<p>A <a class="reference external" href="https://gateway.dask.org/">Dask Gateway</a> is available for scaling your computation. For more details on this deployment, you may want to take a look at <a class="reference external" href="https://github.com/dask/helm-chart/tree/main/daskhub">Daskhub helm chart</a>.</p>
+</section>
+<section id="access-minio">
+<h2>Access MinIO<a class="headerlink" href="#access-minio" title="Link to this heading">#</a></h2>
+<p>Each user has a very small amount of local storage when using the DaskHub as it is not meant to be used for storing large data.  Instead a dedicated <a class="reference external" href="https://min.io">MinIO Object storage</a> has been setup.</p>
+<p>The MinIO console endpoint is: <a class="reference external" href="https://pangeo-eosc-minio.vm.fedcloud.eu/">https://pangeo-eosc-minio.vm.fedcloud.eu/</a>. You can authenticate to the MinIO Object Storage in the same way you login to DaskHub. As shown on the Figure below, make sure you “Select Other Authentication Method” and “Login with SSO (checkin)” to access the MinIO console. Then use your ORCID iD to login.</p>
+<p><img alt="minIO Login" src="_images/minIO_login.png" /></p>
+<p>You can create, access and manage your buckets from the minIO console (or use <a class="reference external" href="https://min.io/docs/minio/linux/developers/python/minio-py.html">minIO Python package</a>). The figure below shows the GUI (with several tabs on the left; the bucket tab is selected on the figure): initially, you won’t have any buckets so please feel free to create public/privates buckets.</p>
+<p><img alt="minIO buckets" src="_images/minIO_buckets.png" /></p>
+<p>In addition to the MinIO console, the API end point is <code class="docutils literal notranslate"><span class="pre">https://pangeo-eosc-minioapi.vm.fedcloud.eu/</span></code> for those who prefer to interact with MinIO via the API.</p>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">#</a></h2>
+<p>If you need support, please open an <a class="reference external" href="https://github.com/pangeo-fish/pangeo-fish-etn2026/issues">issue</a>.</p>
+<p>Please include the output of the last cell of the Pangeo-Fish notebook (appendix <strong>Information for bug reports</strong>): it shows which Docker image, Pangeo-Fish commit and notebook version you used.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="agenda.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Timeline of the workshop</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jupyterlab-basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Practical tips for JupyterLab</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-the-workshop-environment-one-click">Start the workshop environment (one click)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-to-pangeo-eosc-manually">Access to Pangeo@EOSC manually</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-kernel-to-use">Which kernel to use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copernicus-marine-credentials">Copernicus Marine credentials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-minio">Access MinIO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support">Support</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo-Fish
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

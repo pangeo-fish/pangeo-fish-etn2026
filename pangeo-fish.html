@@ -1,0 +1,1722 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estimating fish locations with Pangeo-Fish &#8212; Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pangeo-fish';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Your fish in a future ocean with GFTS" href="gfts.html" />
+    <link rel="prev" title="Ocean model data in Python: Xarray, Dask, Zarr and HEALPix" href="glorys-xarray-dask-zarr-healpix.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pangeo-fish-logo.png" class="logo__image only-light" alt="Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop - Home"/>
+    <img src="_static/pangeo-fish-logo.png" class="logo__image only-dark pst-js-only" alt="Fish geolocation with Pangeo-Fish - ETN Symposium 2026 workshop - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fish geolocation with Pangeo-Fish
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="agenda.html">Timeline of the workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users-getting-started.html">Registration to Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyterlab-basics.html">Practical tips for JupyterLab</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pangeo and EOSC in a nutshell</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pangeo.html">EOSC and the Pangeo community</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ocean model data in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glorys-xarray-dask-zarr-healpix.html">Xarray, Dask, Zarr and HEALPix with GLORYS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fish geolocation with pangeo-fish and GFTS</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Estimating fish locations with Pangeo-Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfts.html">Your fish in a future ocean with GFTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feedback.html">Feedback survey</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="afterword/resources.html">Join the community!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="afterword/edsbook.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-fish/pangeo-fish-etn2026/main?urlpath=lab/tree/docs/pangeo-fish.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-eosc.vm.fedcloud.eu/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-fish/pangeo-fish-etn2026&urlpath=lab/tree/pangeo-fish-etn2026/docs/pangeo-fish.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-fish/pangeo-fish-etn2026" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-fish/pangeo-fish-etn2026/issues/new?title=Issue%20on%20page%20%2Fpangeo-fish.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pangeo-fish.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estimating fish locations with Pangeo-Fish</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-analysis">1. Prepare the analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-analysis-tools">Load the analysis tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-settings">Study settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-calculations">Prepare the calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tag-observations">Load the tag observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-in-to-copernicus-marine">Sign in to Copernicus Marine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-tag-and-ocean-model-temperatures">2. Compare tag and ocean-model temperatures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-ocean-temperatures-for-the-study-area">Load ocean temperatures for the study area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-temperatures-at-candidate-locations">Compare temperatures at candidate locations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-data-availability-over-time">Check data availability over time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#represent-candidate-locations-on-an-equal-area-grid">3. Represent candidate locations on an equal-area grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-locations-consistent-with-the-temperatures">4. Identify locations consistent with the temperatures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-information-from-acoustic-detections">5. Add information from acoustic detections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bring-the-evidence-together">Bring the evidence together</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-the-temperature-and-acoustic-evidence">6. Combine the temperature and acoustic evidence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-how-widely-the-fish-can-move">7. Estimate how widely the fish can move</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-locations-and-summarize-tracks">8. Estimate locations and summarize tracks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-maps-and-tracks">9. Explore the maps and tracks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tracks">9.1 Compare the tracks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-probability-distributions-over-time">9.2 View the probability distributions over time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-your-fish-in-a-future-ocean-with-gfts">10. Next step: your fish in a future ocean with GFTS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-appendix-compare-movement-assumptions">Optional appendix: compare movement assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-information-for-bug-reports">Appendix: information for bug reports</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="estimating-fish-locations-with-pangeo-fish">
+<h1>Estimating fish locations with Pangeo-Fish<a class="headerlink" href="#estimating-fish-locations-with-pangeo-fish" title="Link to this heading">#</a></h1>
+<p><strong>Where might a fish have travelled between release and recapture?</strong> In this workshop, we combine temperatures recorded by a tag with ocean-model temperatures and acoustic detections to estimate possible locations over time.</p>
+<p>We use tag <code class="docutils literal notranslate"><span class="pre">A19124</span></code> from the study by M. Gonse et al., “Combining acoustic telemetry with archival tagging to investigate the spatial dynamic of the understudied pollack, <em>Pollachius pollachius</em>”, <em>Journal of Fish Biology</em> 106(5): 1400–1421 (2024), <a class="reference external" href="https://doi.org/10.1111/jfb.15750">doi:10.1111/jfb.15750</a>. Its Data Storage Tag (DST) records temperature and depth. Release and recapture/death information provide additional constraints.</p>
+<p>This notebook is designed for the ready-to-use ETN2026 workshop environment. Select the <strong>Python (pangeo-fish)</strong> kernel; setup details are in <a class="reference internal" href="users-getting-started.html"><span class="std std-doc">Getting started</span></a>.</p>
+<p>Once your Pangeo&#64;EOSC registration has been approved, first <a class="reference external" href="https://pangeo-eosc.vm.fedcloud.eu/hub/login">log in to Pangeo&#64;EOSC</a>. After logging in, return to this page and use the launch link below. The launch link may not work correctly if you are not already logged in.</p>
+<p><strong><a href="https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain">click here to launch the workshop environment and open this notebook</a></strong>.</p>
+<p>Alternatively, after logging in, copy and paste this URL into your browser’s address bar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain
+</pre></div>
+</div>
+<p>To keep the workshop focused, we use temperature and acoustic observations. Additional bathymetric likelihoods, tides, light-based geolocation, and behaviour analysis are outside this tutorial’s scope. Bathymetry and tidal/behaviour tools are available, and light-based likelihoods have also been developed and are awaiting integration into the workshop version. To request a workshop on these topics, please <a class="reference external" href="https://github.com/pangeo-fish/pangeo-fish/issues/new/choose">open an issue in the main Pangeo-Fish repository</a>.</p>
+<p><strong>Workflow.</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Prepare the analysis:</strong> load the tools and choose the study settings.</p></li>
+<li><p><strong>Compare temperatures:</strong> compare tag observations with ocean-model temperatures at candidate locations.</p></li>
+<li><p><strong>Use an equal-area grid:</strong> represent candidate locations as HEALPix cells.</p></li>
+<li><p><strong>Identify locations consistent with temperature:</strong> give greater weight to closer temperature matches.</p></li>
+<li><p><strong>Add acoustic detections:</strong> constrain locations using receiver detections.</p></li>
+<li><p><strong>Combine the evidence:</strong> bring these observations together at each time step.</p></li>
+<li><p><strong>Estimate movement:</strong> fit how widely the fish can move between time steps.</p></li>
+<li><p><strong>Estimate locations and tracks:</strong> combine the observations with the movement model.</p></li>
+<li><p><strong>Explore the results:</strong> inspect maps, compare tracks, and make a video.</p></li>
+<li><p><strong>Next step with GFTS:</strong> see your fish next to future ocean temperatures in Destination Earth.</p></li>
+</ol>
+<p>We use a Hidden Markov Model (HMM) to connect the observations over time. The fish’s location is unknown; the model estimates its possible locations using both the observations and assumptions about movement.</p>
+<section id="prepare-the-analysis">
+<h2>1. Prepare the analysis<a class="headerlink" href="#prepare-the-analysis" title="Link to this heading">#</a></h2>
+<p>Run the cells from top to bottom. Click a code cell and press <strong>Shift+Enter</strong> to run it and move to the next cell. Wait for each calculation to finish before continuing. If a cell shows an error, ask an instructor before running the following steps. If you report a problem later, run the cell in the appendix <strong>Information for bug reports</strong> at the end of this notebook and copy its output into your report.</p>
+<p>The workshop environment already contains the required Python packages. Run the setup cells below without changing them.</p>
+<p>This cell selects the computing setup used in the workshop. Run it as provided.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use CPU execution.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"CUDA_VISIBLE_DEVICES"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-the-analysis-tools">
+<h3>Load the analysis tools<a class="headerlink" href="#load-the-analysis-tools" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pint_xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">unit_registry</span> <span class="k">as</span> <span class="n">ureg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.xarray</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># sys.path.append("../")</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pangeo_fish</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.xarray_update</span><span class="w"> </span><span class="kn">import</span> <span class="n">Accessor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">multiplot_healpix</span><span class="p">,</span> <span class="n">multi_map_with_synced_sliders</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="study-settings">
+<h3>Study settings<a class="headerlink" href="#study-settings" title="Link to this heading">#</a></h3>
+<p>All settings are collected here and grouped by the section that uses them. Keep the supplied values for your first run. For your own study, the tag, study area, temperature tolerance, and receiver detection range are particularly important choices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SECTION 1 — Initialization and configuration</span>
+<span class="c1"># Tag identifier; the last assignment selects A19124 for this workshop.</span>
+<span class="n">tag_name</span> <span class="o">=</span> <span class="s2">"A18828"</span>
+<span class="n">tag_name</span> <span class="o">=</span> <span class="s2">"A19124"</span>
+
+<span class="c1"># Tag data location: a public URL, local path, or s3:// bucket path.</span>
+<span class="n">tag_root</span> <span class="o">=</span> <span class="s2">"https://data-taos.ifremer.fr/demo/tag/tag/"</span>
+<span class="n">tag_storage_options</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="c1"># Backup: the same tag data mirrored on the Pangeo@EOSC MinIO (public, read-only).</span>
+<span class="c1"># If data-taos.ifremer.fr is unreachable, use these two lines instead.</span>
+<span class="c1"># tag_root = "s3://todaka-pangeo-fish-demo/tag"</span>
+<span class="c1"># tag_storage_options = {</span>
+<span class="c1">#     "anon": True,</span>
+<span class="c1">#     "client_kwargs": {"endpoint_url": "https://pangeo-eosc-minioapi.vm.fedcloud.eu"},</span>
+<span class="c1"># }</span>
+
+<span class="c1"># Folder for saving results in this workshop.</span>
+<span class="n">scratch_root</span> <span class="o">=</span> <span class="s2">"./test"</span>
+
+<span class="c1"># Connection settings for reading/writing results under scratch_root.</span>
+<span class="c1"># None uses default settings, which are sufficient for this workshop.</span>
+<span class="c1"># For an s3:// scratch_root, provide credentials/profile or endpoint options.</span>
+<span class="n">storage_options</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Number of time steps processed together. Keep this value for the workshop.</span>
+<span class="c1"># 1 = one time step per chunk; -1 = all time steps in one chunk.</span>
+<span class="n">chunk_time</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># SECTION 2 — Compare reference ocean data with DST observations</span>
+<span class="c1"># Select the Copernicus Marine ocean model; keep only one assignment active.</span>
+<span class="c1"># Both options work in the workshop environment; start with IBI.</span>
+
+<span class="c1"># IBI Reanalysis — Regional model, ~3 km, daily (default)</span>
+<span class="c1"># https://data.marine.copernicus.eu/product/IBI_MULTIYEAR_PHY_005_002</span>
+<span class="n">copernicus_model_name</span> <span class="o">=</span> <span class="s2">"cmems_mod_ibi_phy-temp_my_0.027deg_P1D-m"</span>
+
+<span class="c1"># GLORYS12 Reanalysis — Global model, ~9 km, daily</span>
+<span class="c1"># https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030</span>
+<span class="c1"># copernicus_model_name = "cmems_mod_glo_phy_my_0.083deg_P1D-m"</span>
+
+<span class="c1"># Read the selected model from Copernicus Marine. Keep None for this workshop.</span>
+<span class="n">ref_url</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Geographic bounds for model loading; also used in Sections 3 and 9.</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"latitude"</span><span class="p">:</span> <span class="p">[</span><span class="mi">46</span><span class="p">,</span> <span class="mf">51.5</span><span class="p">],</span> <span class="s2">"longitude"</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]}</span>
+<span class="c1"># Reject cells where the model seabed is too shallow for the depths the fish</span>
+<span class="c1"># was recorded at. A cell is rejected if its seabed is shallower than this</span>
+<span class="c1"># fraction of the maximum tag depth in the same model time bin.</span>
+<span class="c1"># Range: 0 or more; useful values are between 0 and 1.</span>
+<span class="c1">#   0    = filter off: every cell is kept (workshop value)</span>
+<span class="c1">#   0.8  = the seabed must be at least 80% of the deepest tag depth</span>
+<span class="c1">#          (allows some error in the model bathymetry)</span>
+<span class="c1">#   1    = the seabed must be at least as deep as the deepest tag depth</span>
+<span class="c1"># Larger values reject more cells (stricter); values above 1 also reject</span>
+<span class="c1"># cells whose seabed is only slightly deeper than the fish.</span>
+<span class="n">relative_depth_threshold</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># SECTION 3 — HEALPix regridding</span>
+<span class="c1"># Use HEALPix cells for the analysis. Keep this setting for Sections 3–8.</span>
+<span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"cells"</span><span class="p">]</span>
+
+<span class="c1"># HEALPix resolution (approximate equivalent pixel size)</span>
+<span class="c1"># Each refinement level divides the cell area by 4.</span>
+<span class="c1"># Total number of cells = 12 * 4**refinement_level</span>
+<span class="c1"># Equivalent size = sqrt(cell area) on a spherical Earth of radius 6371 km,</span>
+<span class="c1"># not an exact geometric edge length.</span>
+<span class="c1">#</span>
+<span class="c1"># refinement_level = 10  # ~6.4 km</span>
+<span class="n">refinement_level</span> <span class="o">=</span> <span class="mi">11</span>    <span class="c1"># ~3.2 km (similar to the 3 km IBI model)</span>
+<span class="c1"># refinement_level = 12  # ~1.6 km</span>
+<span class="c1">#</span>
+<span class="c1"># Higher refinement levels provide finer spatial resolution</span>
+<span class="c1"># but increase the number of cells and computational cost.</span>
+
+<span class="c1"># Earth shape used for the HEALPix regridding in Section 3. It is stored with</span>
+<span class="c1"># the grid, and the maps and the movement search read it from there. Keep "sphere" here.</span>
+<span class="n">ellipsoid</span> <span class="o">=</span> <span class="s2">"sphere"</span>
+<span class="c1"># ellipsoid = "WGS84"  # Recommended when Earth's flattening matters for the required accuracy.</span>
+
+<span class="c1"># SECTION 4 — Temperature-based emission probability</span>
+<span class="c1"># Temperature tolerance (°C): larger values allow a wider range of</span>
+<span class="c1"># differences between tag and model temperatures (Gaussian standard deviation).</span>
+<span class="n">differences_std</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="c1"># Spread around the known release and recapture/death locations: the standard</span>
+<span class="c1"># deviation of a Gaussian, as an angle in radians on the Earth. Multiply by</span>
+<span class="c1"># the Earth radius to get a distance: 1e-4 rad x 6371 km ≈ 0.64 km.</span>
+<span class="c1"># This is smaller than one HEALPix cell (~3.2 km at level 11), so the location</span>
+<span class="c1"># is effectively fixed to the release (or recapture) cell.</span>
+<span class="c1"># Smaller values give tighter spatial constraints. Keep these workshop values.</span>
+<span class="n">initial_std</span> <span class="o">=</span> <span class="mf">1e-4</span>
+<span class="n">recapture_std</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+<span class="c1"># SECTION 5 — Acoustic detection probability</span>
+<span class="c1"># Maximum detection distance assumed around each receiver.</span>
+<span class="n">receiver_buffer</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="s2">"m"</span><span class="p">)</span>
+
+<span class="c1"># SECTION 7 — Optimization of movement parameters</span>
+<span class="c1"># The Earth radius used to convert movement distances into angles is derived</span>
+<span class="c1"># from the ellipsoid stored with the HEALPix grid (about 6371 km for "sphere").</span>
+<span class="c1"># Speed scale used to set the upper search limit for the movement parameter.</span>
+<span class="c1"># This is not a strict speed limit on every possible movement.</span>
+<span class="n">maximum_speed</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="s2">"km / day"</span><span class="p">)</span>
+<span class="c1"># Multiplier for the upper limit of sigma values tried during fitting.</span>
+<span class="c1"># 1 uses the limit set by maximum_speed and the model time interval;</span>
+<span class="c1"># 2 doubles that limit. It does not directly multiply the fitted movement.</span>
+<span class="c1"># Keep 1 for this workshop. This is unrelated to video frame sampling.</span>
+<span class="n">adjustment_factor</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># Used with HealpixConv; not used by LargeHealpixConv or FoscatConv.</span>
+<span class="c1"># Keep this value for the workshop.</span>
+<span class="n">truncate</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># Numerical precision of the parameter search. Keep this workshop value.</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="mf">1e-6</span>
+
+<span class="c1"># SECTION 8 — State probabilities and trajectories</span>
+<span class="c1"># Trajectory summaries: mean position and most probable cell at each time step.</span>
+<span class="c1"># Also used for plotting in Section 9.</span>
+<span class="n">track_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"mode"</span><span class="p">]</span>
+<span class="c1"># Supported here: "speed" (km/h) and "distance" to the previous point (km).</span>
+<span class="c1"># Other quantities can be calculated afterward; see the optional note in Section 8.</span>
+<span class="n">additional_track_quantities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"speed"</span><span class="p">,</span> <span class="s2">"distance"</span><span class="p">]</span>
+
+<span class="c1"># SECTION 9 — Visualization and video generation</span>
+<span class="c1"># Number of data time steps between video frames</span>
+<span class="c1"># 1 = include every time step</span>
+<span class="c1"># 3 = include every third time step</span>
+<span class="c1"># The current video tool omits the final time step; see Section 9.</span>
+<span class="n">time_step</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define target root directories for storing analysis results.</span>
+<span class="n">target_root</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_root</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">tag_name</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Defines default chunk size for optimization.</span>
+<span class="n">default_chunk</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"time"</span><span class="p">:</span> <span class="n">chunk_time</span><span class="p">,</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">default_chunk_dims</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"time"</span><span class="p">:</span> <span class="n">chunk_time</span><span class="p">}</span>
+<span class="n">default_chunk_dims</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">d</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prepare-the-calculations">
+<h3>Prepare the calculations<a class="headerlink" href="#prepare-the-calculations" title="Link to this heading">#</a></h3>
+<p>Run this cell to start Dask, which shares calculations across the available computing resources. No settings need to be changed here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a local cluster for distributed computing.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalCluster</span>
+
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_client</span><span class="p">()</span>
+<span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-tag-observations">
+<h3>Load the tag observations<a class="headerlink" href="#load-the-tag-observations" title="Link to this heading">#</a></h3>
+<p>Load the temperature, depth, and event information for the selected fish.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_tag</span>
+
+<span class="n">tag</span><span class="p">,</span> <span class="n">tag_log</span><span class="p">,</span> <span class="n">time_slice</span> <span class="o">=</span> <span class="n">load_tag</span><span class="p">(</span>
+    <span class="n">tag_root</span><span class="o">=</span><span class="n">tag_root</span><span class="p">,</span> <span class="n">tag_name</span><span class="o">=</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">tag_storage_options</span>
+<span class="p">)</span>
+<span class="n">tag</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the recorded temperature and depth over time to inspect the observations before estimating locations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_tag</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">plot_tag</span><span class="p">(</span>
+    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+    <span class="n">tag_log</span><span class="o">=</span><span class="n">tag_log</span><span class="p">,</span>
+    <span class="c1"># you can directly save the plot if you want</span>
+    <span class="n">save_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="n">target_root</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The red points are the observations used in the analysis, during the period when the tag is assumed to have been attached to a living fish. Check that this period agrees with the release and recapture/death information, and look for gaps in the records.</p>
+</section>
+<section id="sign-in-to-copernicus-marine">
+<h3>Sign in to Copernicus Marine<a class="headerlink" href="#sign-in-to-copernicus-marine" title="Link to this heading">#</a></h3>
+<p>Run the next cell. If prompted, enter your Copernicus Marine username and password. Your login is saved for later sessions; if it is already available, you will not be asked again.</p>
+<p>If sign-in fails, ask an instructor or consult the <a class="reference external" href="https://help.marine.copernicus.eu/en/articles/8185007-copernicus-marine-toolbox-credentials-configuration">Copernicus Marine credentials guide</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">copernicusmarine</span>
+
+<span class="n">credentials_file</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">".copernicusmarine"</span> <span class="o">/</span> <span class="s2">".copernicusmarine-credentials"</span>
+
+<span class="k">if</span> <span class="n">credentials_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Using saved Copernicus Marine credentials."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">copernicusmarine</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>  <span class="c1"># Prompts for username and password when needed.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="compare-tag-and-ocean-model-temperatures">
+<h2>2. Compare tag and ocean-model temperatures<a class="headerlink" href="#compare-tag-and-ocean-model-temperatures" title="Link to this heading">#</a></h2>
+<section id="load-ocean-temperatures-for-the-study-area">
+<h3>Load ocean temperatures for the study area<a class="headerlink" href="#load-ocean-temperatures-for-the-study-area" title="Link to this heading">#</a></h3>
+<p>We use <a class="reference external" href="https://data.marine.copernicus.eu/product/IBI_MULTIYEAR_PHY_005_002/services">IBI reanalysis</a>, a regional ocean model with daily data and approximately 3 km resolution covering this study area. The following cell loads data for the selected region and tagging period.</p>
+<p><a class="reference external" href="https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/services">GLORYS12</a> is a global alternative with daily data and approximately 9 km resolution. To switch models, add <code class="docutils literal notranslate"><span class="pre">#</span></code> at the start of the active <code class="docutils literal notranslate"><span class="pre">copernicus_model_name</span></code> line and remove it from the alternative line in the settings above. Use IBI for the first run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span><span class="p">,</span> <span class="n">compute_diff</span>
+
+<span class="n">reference_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span>
+    <span class="n">uri</span><span class="o">=</span><span class="n">ref_url</span><span class="p">,</span>
+    <span class="n">tag_log</span><span class="o">=</span><span class="n">tag_log</span><span class="p">,</span>
+    <span class="n">time_slice</span><span class="o">=</span><span class="n">time_slice</span><span class="p">,</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">bbox</span> <span class="o">|</span> <span class="p">{</span><span class="s2">"max_depth"</span><span class="p">:</span> <span class="n">tag_log</span><span class="p">[</span><span class="s2">"pressure"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()}),</span>
+    <span class="n">chunk_time</span><span class="o">=</span><span class="n">chunk_time</span><span class="p">,</span>
+    <span class="n">remote_options</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">copernicus_model_name</span><span class="o">=</span><span class="n">copernicus_model_name</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-temperatures-at-candidate-locations">
+<h3>Compare temperatures at candidate locations<a class="headerlink" href="#compare-temperatures-at-candidate-locations" title="Link to this heading">#</a></h3>
+<p>At each candidate location, compare the tag temperature with the model temperature at the observed depth. Observations are grouped into the model’s time intervals. A difference closer to zero indicates a better temperature match, but several locations may have similar temperatures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">compute_diff</span><span class="p">(</span>
+    <span class="n">reference_model</span><span class="o">=</span><span class="n">reference_model</span><span class="p">,</span>
+    <span class="n">tag_log</span><span class="o">=</span><span class="n">tag_log</span><span class="p">,</span>
+    <span class="n">relative_depth_threshold</span><span class="o">=</span><span class="n">relative_depth_threshold</span><span class="p">,</span>
+    <span class="n">chunk_time</span><span class="o">=</span><span class="n">chunk_time</span><span class="p">,</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="n">diff</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-data-availability-over-time">
+<h3>Check data availability over time<a class="headerlink" href="#check-data-availability-over-time" title="Link to this heading">#</a></h3>
+<p>This plot counts the spatial cells with available data at each time step. Missing values, represented as <code class="docutils literal notranslate"><span class="pre">NaN</span></code> in Python, are excluded. This check is important before running the HMM.</p>
+<p>Look for sudden drops or gaps. Counts can vary, but a sudden drop may indicate missing data or a processing problem. <strong>If the count reaches zero, no spatial values are available at that time step: ask an instructor to help investigate before continuing.</strong></p>
+<p>A temperature difference of zero is a perfect match, so <code class="docutils literal notranslate"><span class="pre">.count()</span></code> counts it as available data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">diff</span><span class="p">[</span><span class="s2">"diff"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">([</span><span class="s2">"lat"</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Valid grid cells"</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">diff</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/diff.zarr"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="represent-candidate-locations-on-an-equal-area-grid">
+<h2>3. Represent candidate locations on an equal-area grid<a class="headerlink" href="#represent-candidate-locations-on-an-equal-area-grid" title="Link to this heading">#</a></h2>
+<p>We transfer the temperature comparisons to a grid called <strong>HEALPix</strong>. Each cell represents the same area of the Earth’s surface. Its hierarchical structure lets us choose a finer or coarser grid; this workshop uses an approximate cell size of <strong>3.2 km</strong>.</p>
+<p>This cell size is not the accuracy of the estimated fish location. Location uncertainty also depends on the observations, the ocean model, and the movement assumptions. Equal area does not imply identical cell shapes or eliminate all spatial distortion; see the <a class="reference external" href="https://healpix.sourceforge.io/">HEALPix documentation</a> for details.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">open_diff_dataset</span><span class="p">,</span>
+    <span class="n">regrid_dataset_hpresample</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the previous dataset (only necessary if you resume the notebook from here)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">open_diff_dataset</span><span class="p">(</span><span class="n">target_root</span><span class="o">=</span><span class="n">target_root</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">)</span>
+<span class="n">diff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reshaped</span><span class="p">,</span> <span class="n">resampling_info</span> <span class="o">=</span> <span class="n">regrid_dataset_hpresample</span><span class="p">(</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">diff</span><span class="p">,</span> <span class="n">refinement_level</span><span class="o">=</span><span class="n">refinement_level</span><span class="p">,</span> <span class="n">ellipsoid</span><span class="o">=</span><span class="n">ellipsoid</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">dims</span>
+<span class="p">)</span>
+<span class="n">reshaped</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resampling_info</span><span class="p">[</span><span class="s2">"bbox"</span><span class="p">]</span> <span class="o">=</span> <span class="n">bbox</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Save the regridding metadata and geographic bounds alongside the results.</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/resampling_info.json"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">resampling_info</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/resampling_info.json"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">resampling_info</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">resampling_info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check data availability again after changing the grid. The number of cells may differ because their size and coverage have changed. Look for sudden drops, and investigate any time step with a count of zero before continuing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reshaped</span><span class="p">[</span><span class="s2">"diff"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Valid HEALPix cells"</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saves the result</span>
+<span class="n">reshaped</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">default_chunk_dims</span><span class="p">)</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/diff-regridded.zarr"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">compute</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following maps show temperature differences (<code class="docutils literal notranslate"><span class="pre">diff</span></code>) and model seabed depth (<code class="docutils literal notranslate"><span class="pre">H0</span></code>). On the temperature-difference map, look for values close to zero: are good matches concentrated in one area or spread across several areas? Check how this pattern changes over time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reshaped</span><span class="o">.</span><span class="n">healpix</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="p">[</span><span class="s2">"diff"</span><span class="p">,</span> <span class="s2">"H0"</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identify-locations-consistent-with-the-temperatures">
+<h2>4. Identify locations consistent with the temperatures<a class="headerlink" href="#identify-locations-consistent-with-the-temperatures" title="Link to this heading">#</a></h2>
+<p>We give more weight to locations where model temperatures match the tag observations. These weights are called <strong>emission likelihoods</strong>: they describe how consistent the observations are with each candidate location.</p>
+<p>We use a Gaussian curve centered on a temperature difference of zero. The setting <code class="docutils literal notranslate"><span class="pre">differences_std</span></code> controls its width: larger values allow a wider range of temperature differences. Release and recapture/death locations provide additional spatial constraints.</p>
+<p>The temperature weights, stored as <code class="docutils literal notranslate"><span class="pre">emission_pdf[&quot;pdf&quot;]</span></code>, do not yet sum to one across locations. We combine and normalize the evidence in Section 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_emission_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the previous dataset (only necessary if you resume the notebook from here)</span>
+<span class="n">differences</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/diff-regridded.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ... and compute the emission matrices</span>
+<span class="n">emission_pdf</span> <span class="o">=</span> <span class="n">compute_emission_pdf</span><span class="p">(</span>
+    <span class="n">diff_ds</span><span class="o">=</span><span class="n">differences</span><span class="p">,</span>
+    <span class="n">events_ds</span><span class="o">=</span><span class="n">tag</span><span class="p">[</span><span class="s2">"tagging_events"</span><span class="p">]</span><span class="o">.</span><span class="n">ds</span><span class="p">,</span>
+    <span class="n">differences_std</span><span class="o">=</span><span class="n">differences_std</span><span class="p">,</span>
+    <span class="n">initial_std</span><span class="o">=</span><span class="n">initial_std</span><span class="p">,</span>
+    <span class="n">recapture_std</span><span class="o">=</span><span class="n">recapture_std</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+    <span class="n">chunk_time</span><span class="o">=</span><span class="n">chunk_time</span><span class="p">,</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">emission_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the temperature weights (<code class="docutils literal notranslate"><span class="pre">pdf</span></code>) with the release (<code class="docutils literal notranslate"><span class="pre">initial</span></code>) and final-location (<code class="docutils literal notranslate"><span class="pre">final</span></code>, when available) maps. Do the temperature observations identify a small area, or leave several possible regions?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emission_pdf</span><span class="o">.</span><span class="n">healpix</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s2">"initial"</span><span class="p">,</span> <span class="s2">"final"</span><span class="p">,</span> <span class="s2">"pdf"</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the total temperature likelihood at each time step, <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">sum(dims,</span> <span class="pre">min_count=1)</span></code>. It need not equal one yet.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: no data at that time step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: data exist, but no location matches the tag temperature.</p></li>
+</ul>
+<p>If either appears, investigate it before continuing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emission_pdf</span> <span class="o">=</span> <span class="n">emission_pdf</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">default_chunk_dims</span><span class="p">)</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">emission_pdf</span><span class="p">[</span><span class="s2">"pdf"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Total temperature likelihood"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Time steps without data (NaN):"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">total</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Time steps with zero total weight:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">total</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the dataset</span>
+<span class="n">emission_pdf</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/emission_diff.zarr"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emission_pdf</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span> <span class="o">=</span> <span class="n">emission_pdf</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sources"</span><span class="p">,</span> <span class="p">[])</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="s2">"temperature"</span>
+<span class="p">]</span>  <span class="c1"># Record the evidence sources included so far.</span>
+<span class="n">emission_pdf</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/total_pdf.zarr"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-information-from-acoustic-detections">
+<h2>5. Add information from acoustic detections<a class="headerlink" href="#add-information-from-acoustic-detections" title="Link to this heading">#</a></h2>
+<p>A detection tells us that the fish was within the assumed detection area of a receiver. We use this information to constrain its possible locations, complementing the temperature evidence.</p>
+<p>This step requires acoustic detections and receiver locations in the tag data. The setting <code class="docutils literal notranslate"><span class="pre">receiver_buffer</span></code> defines the assumed detection range. We combine this evidence with temperature in Section 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_acoustic_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the previous emission pdf and compute the emission probabilities based on acoustic detections</span>
+<span class="n">emission_diff</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/emission_diff.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">acoustic_pdf</span> <span class="o">=</span> <span class="n">compute_acoustic_pdf</span><span class="p">(</span>
+    <span class="n">emission_ds</span><span class="o">=</span><span class="n">emission_diff</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+    <span class="n">receiver_buffer</span><span class="o">=</span><span class="n">receiver_buffer</span><span class="p">,</span>
+    <span class="n">chunk_time</span><span class="o">=</span><span class="n">chunk_time</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">acoustic_pdf</span> <span class="o">=</span> <span class="n">acoustic_pdf</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+<span class="n">acoustic_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acoustic_pdf</span><span class="o">.</span><span class="n">healpix</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"acoustic"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following plot compares detection times with a cell-count diagnostic. Look for changes around detection times.</p>
+<p>Here the code counts cells satisfying <code class="docutils literal notranslate"><span class="pre">acoustic</span> <span class="pre">!=</span> <span class="pre">0</span></code>. Missing values also satisfy this comparison, so this curve is not an exact count of possible fish locations. Keep this distinction in mind when interpreting it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tag</span><span class="p">[</span><span class="s2">"acoustic"</span><span class="p">][</span><span class="s2">"deployment_id"</span><span class="p">]</span><span class="o">.</span><span class="n">hvplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+    <span class="n">acoustic_pdf</span><span class="p">[</span><span class="s2">"acoustic"</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">dims</span><span class="p">)</span><span class="o">.</span><span class="n">hvplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At detection times, the possible locations can narrow sharply to the areas around receivers, under the assumed detection range. These detections provide strong spatial constraints. Interpret changes in the curve alongside the detection times, rather than treating its height as an exact number of possible locations.</p>
+<p>The next cell optionally saves the acoustic results separately. The following analysis can use the results already calculated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acoustic_pdf</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/acoustic.zarr"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bring-the-evidence-together">
+<h3>Bring the evidence together<a class="headerlink" href="#bring-the-evidence-together" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the currently saved evidence sources.</span>
+<span class="n">current_total</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/total_pdf.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">current_total</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">"acoustic"</span> <span class="ow">in</span> <span class="n">current_total</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">current_total</span> <span class="o">=</span> <span class="n">current_total</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="n">current_total</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"sources"</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_total</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"sources"</span><span class="p">,</span> <span class="p">[])</span> <span class="o">+</span> <span class="p">[</span>
+        <span class="s2">"acoustic"</span>
+    <span class="p">]</span>
+
+    <span class="n">merged_pdf</span> <span class="o">=</span> <span class="n">current_total</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">acoustic_pdf</span><span class="o">.</span><span class="n">drop_indexes</span><span class="p">([</span><span class="s2">"cell_ids"</span><span class="p">]),</span> <span class="n">compat</span><span class="o">=</span><span class="s2">"override"</span>
+    <span class="p">)</span>
+
+    <span class="n">merged_pdf</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/total_pdf.zarr"</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+        <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+        <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">merged_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="combine-the-temperature-and-acoustic-evidence">
+<h2>6. Combine the temperature and acoustic evidence<a class="headerlink" href="#combine-the-temperature-and-acoustic-evidence" title="Link to this heading">#</a></h2>
+<p>We multiply the temperature and acoustic weights and include the final-location information when available. We then divide by the total weight across cells so that the combined values sum to one at each time step. This is called <strong>normalization</strong>.</p>
+<p>The result describes the relative support for candidate locations from the observations. We still need the movement model to connect locations over time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">combine_pdfs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">current_total</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/total_pdf.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">current_total</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emission_pdf</span> <span class="o">=</span> <span class="n">normalize_pdf</span><span class="p">(</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">current_total</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="s2">"initial"</span><span class="p">,</span> <span class="s2">"final"</span><span class="p">,</span> <span class="s2">"mask"</span><span class="p">),</span>
+    <span class="n">excluded_pdf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># ("acoustic",)</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">emission_pdf</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/combined.zarr"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">emission_pdf</span>
+
+<span class="n">emission_pdf</span><span class="p">[</span><span class="s2">"pdf"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Total probability per time step"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total probability should be approximately <strong>1</strong> at every time step. A time step with no data also shows up as a departure from 1 (its sum is 0). Investigate any such time step before fitting the movement model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">combined</span><span class="o">.</span><span class="n">healpix</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"pdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimate-how-widely-the-fish-can-move">
+<h2>7. Estimate how widely the fish can move<a class="headerlink" href="#estimate-how-widely-the-fish-can-move" title="Link to this heading">#</a></h2>
+<p>The movement model connects possible fish locations between successive time steps. Its parameter, <code class="docutils literal notranslate"><span class="pre">sigma</span></code>, controls how widely movement can spread: larger values allow a broader range of displacements. We estimate this parameter from the observations.</p>
+<p>Run the following cells to fit and save the movement parameter. Check that the search finishes without warnings. The printed <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> values measure the fit at trial values of <code class="docutils literal notranslate"><span class="pre">sigma</span></code>; they need not improve at every step while the search explores different values.</p>
+<p>The movement time interval comes from the dates in the data. Changing the video setting <code class="docutils literal notranslate"><span class="pre">time_step</span></code> does not change fish movement in the model.</p>
+<details>
+<summary>Optional: how the parameter search works</summary>
+<p>The search uses Brent’s method between <code class="docutils literal notranslate"><span class="pre">1e-4</span></code> radians and an upper bound of <code class="docutils literal notranslate"><span class="pre">maximum_speed</span> <span class="pre">×</span> <span class="pre">Δt</span> <span class="pre">×</span> <span class="pre">adjustment_factor</span> <span class="pre">/</span> <span class="pre">earth_radius</span></code>, where Δt is the interval in the emission time coordinate and <code class="docutils literal notranslate"><span class="pre">earth_radius</span></code> is derived from the ellipsoid stored with the HEALPix grid (about 6371 km for <code class="docutils literal notranslate"><span class="pre">&quot;sphere&quot;</span></code>). The speed setting bounds the search for <code class="docutils literal notranslate"><span class="pre">sigma</span></code>; it is not a strict limit on every possible displacement.</p>
+<p>Check whether the fitted value is near a search bound. Successful convergence does not establish that the solution is unique or the global optimum. The appendix allows comparison with alternative values. The fitted parameters and calculation settings are saved in a JSON file for the next step.</p>
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the distributions</span>
+<span class="n">emission</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/combined.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">inline_array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">emission</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the parameter's bounds and search for the best value</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">optimize_pdf</span><span class="p">(</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">emission</span><span class="p">,</span>
+    <span class="n">adjustment_factor</span><span class="o">=</span><span class="n">adjustment_factor</span><span class="p">,</span>
+    <span class="n">truncate</span><span class="o">=</span><span class="n">truncate</span><span class="p">,</span>
+    <span class="n">maximum_speed</span><span class="o">=</span><span class="n">maximum_speed</span><span class="p">,</span>
+    <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span>
+    <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+    <span class="c1"># the results can be directly saved</span>
+    <span class="n">save_parameters</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">conv_method</span><span class="o">=</span><span class="s2">"LargeHealpixConv"</span><span class="p">,</span>  <span class="c1"># fast multi-resolution convolution; "HealpixConv" is the slower reference method</span>
+<span class="p">)</span>
+<span class="n">params</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimate-locations-and-summarize-tracks">
+<h2>8. Estimate locations and summarize tracks<a class="headerlink" href="#estimate-locations-and-summarize-tracks" title="Link to this heading">#</a></h2>
+<p>We combine the observational evidence with the fitted movement model to estimate a probability for each candidate location over time. We summarize these distributions in two ways:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mean</span></code>:</strong> the mean location at each time step.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mode</span></code>:</strong> the cell with the highest probability at each time step.</p></li>
+</ul>
+<p>These lines summarize the estimated distributions; they are not directly observed paths. When interpreting them, also examine how widely the probability is spread across the map. We calculate distance between successive track points in kilometres and the corresponding speed in kilometres per hour.</p>
+<details>
+<summary>Optional: other track methods and measurements</summary>
+<p>Viterbi seeks the most probable complete sequence of locations, rather than a separate summary at each time step. It is not enabled in this workshop’s analysis, so keep <code class="docutils literal notranslate"><span class="pre">track_modes</span> <span class="pre">=</span> <span class="pre">[&quot;mean&quot;,</span> <span class="pre">&quot;mode&quot;]</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">additional_track_quantities</span></code> setting accepts only <code class="docutils literal notranslate"><span class="pre">&quot;speed&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;distance&quot;</span></code>. Afterward, MovingPandas can calculate acceleration (<code class="docutils literal notranslate"><span class="pre">add_acceleration</span></code>), direction (<code class="docutils literal notranslate"><span class="pre">add_direction</span></code>), changes in direction (<code class="docutils literal notranslate"><span class="pre">add_angular_difference</span></code>), and time intervals (<code class="docutils literal notranslate"><span class="pre">add_timedelta</span></code>) from the returned trajectories. These are separate processing steps; see the <a class="reference external" href="https://movingpandas.readthedocs.io/en/main/api/trajectory.html">MovingPandas trajectory API</a>.</p>
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">predict_positions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="p">,</span> <span class="n">trajectories</span> <span class="o">=</span> <span class="n">predict_positions</span><span class="p">(</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">track_modes</span><span class="o">=</span><span class="n">track_modes</span><span class="p">,</span>
+    <span class="n">additional_track_quantities</span><span class="o">=</span><span class="n">additional_track_quantities</span><span class="p">,</span>
+    <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probabilities in <code class="docutils literal notranslate"><span class="pre">states</span></code> should sum to approximately <strong>1</strong> at each time step. A departure from 1 means missing or invalid values at that time step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="p">[</span><span class="s2">"states"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Total probability per time step"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="explore-the-maps-and-tracks">
+<h2>9. Explore the maps and tracks<a class="headerlink" href="#explore-the-maps-and-tracks" title="Link to this heading">#</a></h2>
+<p>Compare the mean and mode tracks, and inspect the probability maps over time. Where is the fish’s location tightly constrained, and where are several areas plausible?</p>
+<p>The <strong>emission</strong> maps show support from the observations. The <strong>state</strong> maps also account for movement between time steps. Compare their patterns to see how the movement model affects the estimated locations.</p>
+<section id="compare-the-tracks">
+<h3>9.1 Compare the tracks<a class="headerlink" href="#compare-the-tracks" title="Link to this heading">#</a></h3>
+<p>Where do the mean and mode tracks agree or differ? Use the probability maps to interpret these differences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_trajectories</span>
+
+<span class="n">plot_trajectories</span><span class="p">(</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">track_modes</span><span class="o">=</span><span class="n">track_modes</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">save_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="view-the-probability-distributions-over-time">
+<h3>9.2 View the probability distributions over time<a class="headerlink" href="#view-the-probability-distributions-over-time" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">open_distributions</span><span class="p">,</span> <span class="n">render_distributions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">open_distributions</span><span class="p">(</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="n">target_root</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">chunk_time</span><span class="o">=</span><span class="n">chunk_time</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output above is a summary of the data available for plotting. Run the following cells to create an MP4 animation and play it directly below the code.</p>
+<p><code class="docutils literal notranslate"><span class="pre">time_step</span> <span class="pre">=</span> <span class="pre">1</span></code> requests a frame at every data time step; <code class="docutils literal notranslate"><span class="pre">3</span></code> requests every third step. This changes only the video sampling. The current video tool omits the final time step, even when this setting is 1.</p>
+<p>Watch for periods when the possible locations narrow or spread out, and compare these with the acoustic detection times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">lon</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"longitude"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># (nx,)</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"latitude"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># (ny,)</span>
+<span class="n">lon_2d</span><span class="p">,</span> <span class="n">lat_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>  <span class="c1"># (ny, nx), two-dimensional geographic coordinates</span>
+
+<span class="n">data_2d</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">"latitude"</span><span class="p">:</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"x"</span><span class="p">})</span>
+<span class="n">data_2d</span> <span class="o">=</span> <span class="n">data_2d</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+    <span class="n">longitude</span><span class="o">=</span><span class="p">((</span><span class="s2">"y"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">),</span> <span class="n">lon_2d</span><span class="p">),</span>
+    <span class="n">latitude</span><span class="o">=</span><span class="p">((</span><span class="s2">"y"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">),</span> <span class="n">lat_2d</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">data_2d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">video_filename</span> <span class="o">=</span> <span class="n">render_distributions</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data_2d</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/states"</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="n">bbox</span><span class="p">[</span><span class="s2">"longitude"</span><span class="p">],</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="n">bbox</span><span class="p">[</span><span class="s2">"latitude"</span><span class="p">],</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="n">time_step</span><span class="p">,</span>
+    <span class="n">extension</span><span class="o">=</span><span class="s2">"mp4"</span><span class="p">,</span>
+    <span class="n">frames_dir</span><span class="o">=</span><span class="s2">"video"</span><span class="p">,</span>
+    <span class="n">remove_frames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Video</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Video</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">video_filename</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="next-step-your-fish-in-a-future-ocean-with-gfts">
+<h2>10. Next step: your fish in a future ocean with GFTS<a class="headerlink" href="#next-step-your-fish-in-a-future-ocean-with-gfts" title="Link to this heading">#</a></h2>
+<p>Your results are saved in the output folder printed by the next cell (<code class="docutils literal notranslate"><span class="pre">states.zarr</span></code> and <code class="docutils literal notranslate"><span class="pre">trajectories.parq</span></code>). To see how they can be shown with future sea temperatures in the Destination Earth Global Fish Tracking Service, continue with <a class="reference external" href="https://pangeo-fish.github.io/pangeo-fish-etn2026/gfts.html">Your fish in a future ocean with GFTS</a>, then please fill in the short <a class="reference external" href="https://pangeo-fish.github.io/pangeo-fish-etn2026/feedback.html">feedback survey</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Your results are in:"</span><span class="p">,</span> <span class="n">target_root</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-appendix-compare-movement-assumptions">
+<h2>Optional appendix: compare movement assumptions<a class="headerlink" href="#optional-appendix-compare-movement-assumptions" title="Link to this heading">#</a></h2>
+<p>The main workshop is complete. To explore the influence of movement assumptions, the following cells compare the fitted model with two chosen values of <code class="docutils literal notranslate"><span class="pre">sigma</span></code>. Look at how the probability maps and tracks change.</p>
+<p>Each comparison uses a separate output folder. Keep the supplied settings for a first comparison; more advanced analyses can also use different movement parameters over different time intervals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fsspec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_parameters</span><span class="p">,</span> <span class="n">test_parameter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_pdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, copy the combined emission distribution into a separate output folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the distributions</span>
+<span class="n">emission</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/combined.zarr"</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s2">"zarr"</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">inline_array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Create a new folder</span>
+<span class="n">emission</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/hand_sigma/combined.zarr"</span><span class="p">,</span>  <span class="c1"># replace "hand_sigma" by another name</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span>
+    <span class="n">consolidated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+    <span class="n">zarr_format</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the chosen movement parameters in the same folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">create_parameters</span><span class="p">(</span>
+    <span class="n">sigma</span><span class="o">=</span><span class="p">[</span><span class="mf">0.002708796991645453</span><span class="p">],</span>
+    <span class="n">sigma_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">class_name</span><span class="o">=</span><span class="s2">"UpDownGaussian1DHealpix"</span><span class="p">,</span>  <span class="c1"># Convolution class for the movement model.</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/hand_sigma"</span><span class="p">,</span>  <span class="c1"># Match the folder used above.</span>
+    <span class="n">save_parameters</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">test_parameter()</span></code> saves the combined emission distribution and the chosen parameters in a comparison folder. Pass an existing dataset as <code class="docutils literal notranslate"><span class="pre">emission</span></code>, or leave it as <code class="docutils literal notranslate"><span class="pre">None</span></code> to load <code class="docutils literal notranslate"><span class="pre">combined.zarr</span></code> from Section 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">test_parameter</span><span class="p">(</span>
+    <span class="n">emission</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sigma_tested</span><span class="o">=</span><span class="p">[</span><span class="mf">0.001</span><span class="p">],</span>
+    <span class="n">sigma_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">Conv_method</span><span class="o">=</span><span class="s2">"UpDownGaussian1DHealpix"</span><span class="p">,</span>
+    <span class="n">target_root</span><span class="o">=</span><span class="n">target_root</span><span class="p">,</span>
+    <span class="n">saving_root</span><span class="o">=</span><span class="s2">"/hand_sigma_UDG1D"</span><span class="p">,</span>
+    <span class="n">default_chunk_dims</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+    <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">predict_positions</span>
+
+<span class="n">states_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">predict_positions</span><span class="p">(</span>
+        <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">subfolder</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+        <span class="n">chunks</span><span class="o">=</span><span class="n">default_chunk_dims</span><span class="p">,</span>
+        <span class="n">track_modes</span><span class="o">=</span><span class="n">track_modes</span><span class="p">,</span>
+        <span class="n">additional_track_quantities</span><span class="o">=</span><span class="n">additional_track_quantities</span><span class="p">,</span>
+        <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">subfolder</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"hand_sigma"</span><span class="p">,</span>
+        <span class="s2">"hand_sigma_UDG1D"</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the state distributions using synchronized maps, then compare the trajectories below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">multi_map_with_synced_sliders</span><span class="p">,</span> <span class="n">multiplot_healpix</span>
+
+<span class="n">liste</span> <span class="o">=</span> <span class="n">multiplot_healpix</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="n">states_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s2">"states"</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">states_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">"states"</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">states_list</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s2">"states"</span><span class="p">]),</span>
+    <span class="p">],</span>
+    <span class="n">refinement_level</span><span class="o">=</span><span class="n">refinement_level</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">liste</span>
+
+<span class="n">multi_map_with_synced_sliders</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pangeo_fish.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_trajectories</span>
+
+<span class="n">traj_plots</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">plot_trajectories</span><span class="p">(</span>
+        <span class="n">target_root</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">target_root</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">subfolder</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">track_modes</span><span class="o">=</span><span class="n">track_modes</span><span class="p">,</span>
+        <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+        <span class="n">save_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Model's Folder: </span><span class="si">{</span><span class="n">subfolder</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">subfolder</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="s2">"hand_sigma"</span><span class="p">,</span>
+        <span class="s2">"hand_sigma_UDG1D"</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="p">(</span><span class="n">traj_plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">traj_plots</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">traj_plots</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">cols</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="appendix-information-for-bug-reports">
+<h2>Appendix: information for bug reports<a class="headerlink" href="#appendix-information-for-bug-reports" title="Link to this heading">#</a></h2>
+<p>If something does not work, we need to know exactly which software you used. Run the next cell (it works at any time, even if earlier cells failed) and copy <strong>all of its output</strong> into your <a class="reference external" href="https://github.com/pangeo-fish/pangeo-fish-etn2026/issues">issue</a> or e-mail, together with the error message.</p>
+<p>The output answers three questions:</p>
+<ul class="simple">
+<li><p><strong>Which computing environment?</strong> The Docker image your Jupyter server was started from (registry, name and tag, e.g. <code class="docutils literal notranslate"><span class="pre">ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5</span></code>). The tag ends with the Pangeo-Fish commit used to build it.</p></li>
+<li><p><strong>Which Pangeo-Fish code?</strong> The Git repository and commit of the Pangeo-Fish source installed in that image.</p></li>
+<li><p><strong>Which notebook?</strong> The commit of this workshop repository, and whether you changed the notebook.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Software information for bug reports: copy the whole output into your report.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">PackageNotFoundError</span><span class="p">,</span> <span class="n">version</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="o">*</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"unavailable (</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">)"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pkg_version</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">version</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">PackageNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"not installed"</span>
+
+
+<span class="n">git</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"git"</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s2">"bin"</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">"git"</span>
+<span class="n">fish_src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PANGEO_FISH_SRC"</span><span class="p">,</span> <span class="s2">"/srv/pangeo-fish"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Docker image       :"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"JUPYTER_IMAGE"</span><span class="p">,</span> <span class="s2">"unknown (not set by the hub)"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"JupyterHub         :"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"JUPYTERHUB_SERVICE_URL"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"JUPYTERHUB_API_URL"</span><span class="p">,</span> <span class="s2">"unknown"</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pangeo-Fish version:"</span><span class="p">,</span> <span class="n">pkg_version</span><span class="p">(</span><span class="s2">"pangeo-fish"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pangeo-Fish source :"</span><span class="p">,</span> <span class="n">run</span><span class="p">(</span><span class="n">git</span><span class="p">,</span> <span class="s2">"-C"</span><span class="p">,</span> <span class="n">fish_src</span><span class="p">,</span> <span class="s2">"remote"</span><span class="p">,</span> <span class="s2">"get-url"</span><span class="p">,</span> <span class="s2">"origin"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pangeo-Fish commit :"</span><span class="p">,</span> <span class="n">run</span><span class="p">(</span><span class="n">git</span><span class="p">,</span> <span class="s2">"-C"</span><span class="p">,</span> <span class="n">fish_src</span><span class="p">,</span> <span class="s2">"log"</span><span class="p">,</span> <span class="s2">"-1"</span><span class="p">,</span> <span class="s2">"--format=%H (</span><span class="si">%c</span><span class="s2">s) </span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Notebook repository:"</span><span class="p">,</span> <span class="n">run</span><span class="p">(</span><span class="n">git</span><span class="p">,</span> <span class="s2">"remote"</span><span class="p">,</span> <span class="s2">"get-url"</span><span class="p">,</span> <span class="s2">"origin"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Notebook commit    :"</span><span class="p">,</span> <span class="n">run</span><span class="p">(</span><span class="n">git</span><span class="p">,</span> <span class="s2">"log"</span><span class="p">,</span> <span class="s2">"-1"</span><span class="p">,</span> <span class="s2">"--format=%H (</span><span class="si">%c</span><span class="s2">s) </span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Notebook changes   :"</span><span class="p">,</span> <span class="n">run</span><span class="p">(</span><span class="n">git</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">,</span> <span class="s2">"--short"</span><span class="p">,</span> <span class="s2">"."</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"none"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Python             :"</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"on"</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">platform</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"xarray"</span><span class="p">,</span> <span class="s2">"dask"</span><span class="p">,</span> <span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"xdggs"</span><span class="p">,</span> <span class="s2">"healpix-geo"</span><span class="p">,</span> <span class="s2">"copernicusmarine"</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">19</span><span class="si">}</span><span class="s2">:"</span><span class="p">,</span> <span class="n">pkg_version</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pangeo-fish"
+        },
+        kernelOptions: {
+            name: "pangeo-fish",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pangeo-fish'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="glorys-xarray-dask-zarr-healpix.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ocean model data in Python: Xarray, Dask, Zarr and HEALPix</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gfts.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Your fish in a future ocean with GFTS</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-analysis">1. Prepare the analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-analysis-tools">Load the analysis tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-settings">Study settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-calculations">Prepare the calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tag-observations">Load the tag observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-in-to-copernicus-marine">Sign in to Copernicus Marine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-tag-and-ocean-model-temperatures">2. Compare tag and ocean-model temperatures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-ocean-temperatures-for-the-study-area">Load ocean temperatures for the study area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-temperatures-at-candidate-locations">Compare temperatures at candidate locations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-data-availability-over-time">Check data availability over time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#represent-candidate-locations-on-an-equal-area-grid">3. Represent candidate locations on an equal-area grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-locations-consistent-with-the-temperatures">4. Identify locations consistent with the temperatures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-information-from-acoustic-detections">5. Add information from acoustic detections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bring-the-evidence-together">Bring the evidence together</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-the-temperature-and-acoustic-evidence">6. Combine the temperature and acoustic evidence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-how-widely-the-fish-can-move">7. Estimate how widely the fish can move</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-locations-and-summarize-tracks">8. Estimate locations and summarize tracks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-the-maps-and-tracks">9. Explore the maps and tracks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-the-tracks">9.1 Compare the tracks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-probability-distributions-over-time">9.2 View the probability distributions over time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-your-fish-in-a-future-ocean-with-gfts">10. Next step: your fish in a future ocean with GFTS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-appendix-compare-movement-assumptions">Optional appendix: compare movement assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-information-for-bug-reports">Appendix: information for bug reports</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo-Fish
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
