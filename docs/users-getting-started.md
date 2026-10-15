@@ -103,3 +103,5 @@ In addition to the MinIO console, the API end point is `https://pangeo-eosc-mini
 ## Support
 
 If you need support, please open an [issue](https://github.com/pangeo-fish/pangeo-fish-etn2026/issues).
+
+Please include the output of the last cell of the Pangeo-Fish notebook (appendix **Information for bug reports**): it shows which Docker image, Pangeo-Fish commit and notebook version you used.
