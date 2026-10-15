@@ -8,10 +8,18 @@ This hands-on workshop is given at the [European Tracking Network (ETN) Symposiu
 
 The notebooks run on [Pangeo@EOSC](https://pangeo-data.github.io/pangeo-eosc/) with the Docker image [`ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5`](https://github.com/tinaok/pangeo-fish-docker).
 
-👉 **One-click start on Pangeo@EOSC** (login, start the pangeo-fish image, clone/update this repository and open the notebook):
+See [Registration to Pangeo@EOSC](https://pangeo-fish.github.io/pangeo-fish-etn2026/users-getting-started.html) for the registration steps (to be done **before** the workshop).
+
+Once your registration has been approved, first [log in to Pangeo@EOSC](https://pangeo-eosc.vm.fedcloud.eu/hub/login). After logging in, return to this page and use the launch link below. The launch link may not work correctly if you are not already logged in.
+
+👉 **One-click start on Pangeo@EOSC** (start the pangeo-fish image, clone/update this repository and open the notebook):
 [Start the workshop environment](https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain)
 
-See [Registration to Pangeo@EOSC](https://pangeo-fish.github.io/pangeo-fish-etn2026/users-getting-started.html) for the registration steps (to be done **before** the workshop).
+Alternatively, after logging in, copy and paste this URL into your browser's address bar:
+
+```
+https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain
+```
 
 ## Build the book locally
 

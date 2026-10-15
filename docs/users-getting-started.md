@@ -30,13 +30,20 @@ You can also contribute to "the Pangeo show and tell" online meetups.
 
 ## Start the workshop environment (one click)
 
-Once your enrollment has been approved, click on the link below. It will:
+Once your enrollment has been approved, first [log in to Pangeo@EOSC](https://pangeo-eosc.vm.fedcloud.eu/hub/login). Click **Sign in with EGI Check-in** and use the same ORCID iD / EGI account you used to register. After logging in, return to this page and use the launch link below. The launch link may not work correctly if you are not already logged in.
 
-1. ask you to **Sign in with EGI Check-in** (use the same ORCID iD / EGI account as above),
-2. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5`),
-3. **clone this repository** (`pangeo-fish-etn2026`) into your home directory (or update it if it is already there) and open the pangeo-fish notebook.
+The launch link will:
+
+1. start a JupyterLab server with the **pangeo-fish Docker image** (`ghcr.io/tinaok/pangeo-fish-notebook:2026.06.04-10751a5`),
+2. **clone this repository** (`pangeo-fish-etn2026`) into your home directory (or update it if it is already there) and open the pangeo-fish notebook.
 
 👉 **<a href="https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&amp;profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&amp;next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain">Start the ETN 2026 pangeo-fish workshop environment</a>** 👈
+
+Alternatively, after logging in, copy and paste this URL into your browser's address bar:
+
+```
+https://pangeo-eosc.vm.fedcloud.eu/hub/spawn?profile=only-choice&profile-option-only-choice--image--unlisted-choice=ghcr.io%2Ftinaok%2Fpangeo-fish-notebook%3A2026.06.04-10751a5&next=%2Fhub%2Fuser-redirect%2Fgit-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fpangeo-fish%252Fpangeo-fish-etn2026%26urlpath%3Dlab%252Ftree%252Fpangeo-fish-etn2026%252Fdocs%252Fpangeo-fish.ipynb%26branch%3Dmain
+```
 
 :::{note}
 If a JupyterLab server is **already running** for you (for example with another image), the link above opens that server instead of starting a new one with the pangeo-fish image. In that case, stop it first: in JupyterLab, go to `File > Hub Control Panel`, click `Stop My Server`, then click the link again.
