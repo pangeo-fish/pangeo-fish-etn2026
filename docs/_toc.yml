@@ -5,6 +5,7 @@ parts:
     chapters:
       - file: agenda
       - file: users-getting-started
+      - file: jupyterlab-basics
   - caption: Pangeo and EOSC in a nutshell
     chapters:
       - file: pangeo

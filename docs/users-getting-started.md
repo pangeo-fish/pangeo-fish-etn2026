@@ -70,6 +70,8 @@ The Docker image provides two Python kernels. **Use "Python (pangeo-fish)" for a
 
 In a terminal, the pangeo-fish environment is activated with `conda activate pangeo-fish`.
 
+A few practical JupyterLab tips (running all cells, shutting down kernels, stopping your server, deleting folders) are gathered in {doc}`jupyterlab-basics`.
+
 ## Copernicus Marine credentials
 
 Both notebooks download ocean model data (GLORYS, Global Ocean Physics Reanalysis) from the [Copernicus Marine Service](https://data.marine.copernicus.eu/). You need a (free) Copernicus Marine account:
